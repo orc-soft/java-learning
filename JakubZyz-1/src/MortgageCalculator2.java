@@ -46,13 +46,12 @@ public class MortgageCalculator2 {
             System.out.print(prompt);
             value = SCANNER.nextDouble();
             if (value >= min && value <= max)
-                break;
+                return value;
             System.out.println("Podaj wartość pomiędzy " + min + " a " + max);
         }
-        return value;
     }
 
-    public static double calculateAccountValue(int principle, double annualInterest, int years, short paymentsDone) {
+    private static double calculateAccountValue(int principle, double annualInterest, int years, short paymentsDone) {
         double monthlyInterest = (annualInterest / PERCENT) / MONTHS;
         int numberOfPayments = years * MONTHS;
         double mortgagePatternNumber = Math.pow(1 + monthlyInterest, numberOfPayments);
@@ -61,11 +60,11 @@ public class MortgageCalculator2 {
 
     }
 
-    public static double calculateMortgage(int principle, double annualInterest, int years) {
+    private static double calculateMortgage(int principle, double annualInterest, int years) {
         double monthlyInterest = (annualInterest / PERCENT) / MONTHS;
         int numberOfPayments = years * MONTHS;
         double mortgagePatternNumber = Math.pow(1 + monthlyInterest, numberOfPayments);
-        return principle * ((monthlyInterest * mortgagePatternNumber) / (mortgagePatternNumber - 1));
+        return principle * (monthlyInterest * mortgagePatternNumber) / (mortgagePatternNumber - 1);
     }
 
 }
